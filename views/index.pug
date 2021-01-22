@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  hr
+
+  h3 User List
+  table
+    thead
+      tr
+        th #
+        th username
+        th email
+        th password
+    tbody
+      each user in users
+        tr
+          td=user.id
+          td=user.username
+          td=user.email
+          td=user.password
