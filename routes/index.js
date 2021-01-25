@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const model=require('../model');
+const bcrypt=require('bcryptjs');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -13,10 +14,13 @@ router.get('/new',function(req,res,next){
 });
 
 router.post('/create', async function(req,res,next){
+  const plain=req.body.password;
+  const salt=bcrypt.genSaltSync(10);
+  const hashPassword=bcrypt.hashSync(plain, salt);
   const user=await model.User.create({
     username:req.body.username,
     email:req.body.email,
-    password:req.body.password
+    password:hashPassword
   });
   console.log(user);
   res.redirect('/');
