@@ -1,0 +1,16 @@
+extends layout
+block content
+
+    h2 Edit User
+
+    form(action=`/${id}` method="POST")
+        input(type="hidden" name="_method" value="PUT")
+        input(type="text" name="username" value=username)
+        br
+        input(type="email" name="email" value=email)
+        br
+        input(type="password" name="password" placeholder="Password")
+        br
+        input(type="submit" value="Complete")
+        br
+        a(href='/') Back

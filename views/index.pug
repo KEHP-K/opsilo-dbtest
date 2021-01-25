@@ -6,6 +6,7 @@ block content
   hr
 
   h3 User List
+  br
   table
     thead
       tr
@@ -13,6 +14,7 @@ block content
         th username
         th email
         th password
+        th Edit / Delete
     tbody
       each user in users
         tr
@@ -20,6 +22,12 @@ block content
           td=user.username
           td=user.email
           td=user.password
+          td
+            button(class="edit-btn")
+              a(href=`/${user.id}/edit` class="edit-a") Edit
+            form(method="post" action=`/${user.id}` class="user-form")
+              input(type="hidden" name="_method" value="DELETE")
+              input(type="submit" class="del-btn" value="Delete")
   br
   br
   a(href="/new") New User
